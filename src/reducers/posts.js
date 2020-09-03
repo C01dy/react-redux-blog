@@ -4,6 +4,12 @@ import {
   FETCH_POSTS_FAILURE,
 } from '../actions/get-posts-action';
 
+import {
+  ADD_POST_REQUEST,
+  ADD_POST_SUCCESS,
+  ADD_POST_FAILURE,
+} from '../actions/add-post-action';
+
 const initialState = {
   posts: [],
   isFetching: false,
@@ -18,6 +24,17 @@ export const postsReducer = (state = initialState, action) => {
       return { ...state, posts: action.payload, isFetching: false };
     case FETCH_POSTS_FAILURE:
       return { ...state, error: action.payload, isFetching: false };
+    case ADD_POST_REQUEST:
+      return { ...state, isFetching: true };
+    case ADD_POST_SUCCESS:
+      return {
+        ...state,
+        posts: [...state.todos, action.payload],
+        isFetching: false,
+      };
+    case ADD_POST_FAILURE:
+      return { ...state, error: action.payload, isFetching: false };
+
     default:
       return state;
   }

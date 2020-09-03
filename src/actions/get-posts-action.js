@@ -12,7 +12,7 @@ const getPosts = () => (dispatch) => {
     url: 'http://localhost:3000/posts',
   })
     .then(({ data }) => dispatch(fetchPostsSuccess(data)))
-    .catch(err => dispatch(fetchPostsFailure(err)));
+    .catch(({message}) => dispatch(fetchPostsFailure(message)));
 };
 
 const fetchPostsRequest = () => {

@@ -5,22 +5,23 @@ const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
-const addPost = async (post) => {
+const addPost = (post) => (dispatch) => {
+  dispatch(addPostRequest());
 
-  await axios({
+  axios({
     method: 'post',
     url: 'http://localhost:3000/posts',
     data: {
-        title: post.title,
-        body: post.body,
-        date: post.date,
-        id: post.id
-    }
+      title: post.title,
+      body: post.body,
+      date: post.date,
+      id: post.id,
+    },
   })
-    .then(res => console.log(res))
-    .catch(err => console.log(err));
+    .then(({ data }) => dispatch(addPostSuccess(data)))
+    .catch(({message}) => dispatch(addPostFailure(message)));
 
-    getPosts();
+  getPosts();
 };
 
 const addPostRequest = () => {
@@ -29,10 +30,10 @@ const addPostRequest = () => {
   };
 };
 
-const addPostSuccess = (posts) => {
+const addPostSuccess = (post) => {
   return {
     type: ADD_POST_SUCCESS,
-    payload: posts,
+    payload: post,
   };
 };
 
@@ -43,6 +44,4 @@ const addPostFailure = (err) => {
   };
 };
 
-export {
-    addPost
-}
+export { addPost, ADD_POST_REQUEST, ADD_POST_SUCCESS, ADD_POST_FAILURE };
