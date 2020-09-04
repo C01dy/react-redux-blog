@@ -1,28 +1,16 @@
 {
   "posts": [
     {
-      "title": "Reg.Exps",
-      "date": "September 10, 2020",
-      "id": 21,
-      "body": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."
+      "title": "Хуки в React",
+      "body": "Хуки — нововведение в React 16.8, которое позволяет использовать состояние и другие возможности React без написания классов.\n\nХуки решают множество, казалось бы, несвязанных между собой, проблем в React, с которыми мы сталкивались в течение пяти лет написания и поддержки десятков тысяч компонентов. Если вы изучаете React, используете его ежедневно или используете другую библиотеку с похожим компонентным подходом, эти проблемы наверняка покажутся вам знакомыми.\n\nС помощью хуков вы можете извлечь логику состояния из компонента, чтобы её протестировать или повторно использовать. Хуки позволяют вам повторно использовать логику состояния, не затрагивая дерево компонентов. Благодаря этому, хуки легко использовать в разных компонентах и делиться ими с сообществом.",
+      "date": "04.08.2020",
+      "id": 13
     },
     {
-      "title": "Pug",
-      "body": "dl,slfsdfksdf",
-      "date": "September 17, 2020",
-      "id": 22
-    },
-    {
-      "title": "Pug",
-      "body": "dl,slfsdfksdf",
-      "date": "September 17, 2020",
-      "id": 25
-    },
-    {
-      "title": "Pug",
-      "body": "dl,slfsdfksdf",
-      "date": "September 17, 2020",
-      "id": 8
+      "title": "Состояние и жизненный цикл в React компонентах",
+      "body": "Давайте преобразуем функциональный компонент Clock в классовый компонент за 5 шагов:\n\nСоздаём ES6-класс с таким же именем, указываем React.Component в качестве родительского класса\nДобавим в класс пустой метод render()\nПеренесём тело функции в метод render()\nЗаменим props на this.props в теле render()\nУдалим оставшееся пустое объявление функции",
+      "date": "04.08.2020",
+      "id": 18
     }
   ]
 }

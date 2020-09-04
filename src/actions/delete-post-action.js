@@ -11,7 +11,9 @@ const deletePost = (id) => (dispatch) => {
     method: 'delete',
     url: `http://localhost:3000/posts/${id}`,
   })
-    .then((post) => dispatch(deletePostSuccess(post)))
+    .then((post) => {
+      dispatch(deletePostSuccess(post))
+    })
     .catch(({ message }) => dispatch(deletePostFailure(message)));
 
 };

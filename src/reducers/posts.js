@@ -42,12 +42,15 @@ export const postsReducer = (state = initialState, action) => {
     case DELETE_POST_REQUEST:
       return { ...state, isFething: true };
     case DELETE_POST_SUCCESS:
-      const id = action.payload.id;
+      const re = action.payload.config.url.match(/\d+/g);
+      const id = +re[1];
       const idx = state.posts.findIndex((post) => post.id === id);
-
       return {
         ...state,
-        posts: [...state.posts.slice(0, idx), ...state.posts.slice(0, idx + 1)],
+        posts: [
+          ...state.posts.slice(0, idx), 
+          ...state.posts.slice(idx + 1)
+        ],
         isFetching: false,
       };
     case DELETE_POST_FAILURE:

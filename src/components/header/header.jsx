@@ -2,10 +2,10 @@ import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ( {
+  
   root: {
-    background:
-      'linear-gradient(90deg, rgba(153,0,33,1) 0%, rgba(236,0,51,1) 50%, rgba(153,0,33,1) 100%)',
+    background: theme.palette.primary.main
   },
   content: {
     display: 'flex',
@@ -21,7 +21,7 @@ const useStyles = makeStyles({
     color: 'whitesmoke',
     fontFamily: "'Alata', sans-serif",
   },
-  nav_btn: {
+  add: {
     display: 'flex',
     alignItems: 'center',
     color: 'whitesmoke',
@@ -31,15 +31,19 @@ const useStyles = makeStyles({
   nav: {
     display: 'flex',
   },
-});
+}));
 
 const Header = () => {
+
   const styles = useStyles();
   return (
     <Box className={styles.root}>
       <Container className={styles.content}>
         <Typography variant="h5" className={styles.title}>
           React blog
+        </Typography>
+        <Typography variant="button" className={styles.add}>
+          Новый пост
         </Typography>
       </Container>
     </Box>
