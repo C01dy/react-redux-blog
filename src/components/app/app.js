@@ -6,8 +6,6 @@ import { getPosts } from '../../actions/get-posts-action';
 import Header from '../header/header';
 import Post from '../post/post';
 import { connect } from 'react-redux';
-import { Route } from 'react-router-dom';
-import AddPostPage from '../add-post-page/add-post-page';
 
 function App({ onGetPosts, onAddPost, posts, isFetching, error }) {
   const add = async () => {
@@ -18,8 +16,8 @@ function App({ onGetPosts, onAddPost, posts, isFetching, error }) {
       id: Math.floor(Math.random() * 54),
     };
 
-    await onAddPost(newPost);
-    onGetPosts();
+    onAddPost(newPost);
+
   };
 
   useEffect(() => {
@@ -29,17 +27,11 @@ function App({ onGetPosts, onAddPost, posts, isFetching, error }) {
   return (
     <div className="app">
       <Header />
-
+      <button onClick={add}>Push</button>
       <Container>
-        <button onClick={add}>Add post</button>
         {posts.map(({ title, date, id, body }) => (
-          <Post key={id} title={title} date={date} body={body} />
+          <Post key={id} title={title} date={date} body={body}  id={id}/>
         ))}
-
-        <Route 
-          path="/add_post"
-          render={() => <AddPostPage/>}
-        />
       </Container>
     </div>
   );

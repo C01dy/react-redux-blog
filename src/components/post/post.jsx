@@ -1,6 +1,8 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Card, CardHeader, CardActionArea, CardContent, Typography } from '@material-ui/core';
+import { deletePost } from '../../actions/delete-post-action';
+import { connect } from 'react-redux';
 
 const useStyles = makeStyles({
   root: {
@@ -14,10 +16,11 @@ const useStyles = makeStyles({
   },
 });
 
-const Post = ({ title, body, date }) => {
+const Post = ({ title, body, date, id, onDeletePost }) => {
   const styles = useStyles();
+
   return (
-    <Card className={styles.root}>
+    <Card className={styles.root} onClick={() => onDeletePost(id)}>
       <CardActionArea>
         <CardHeader title={title} subheader={date} />
         <CardContent>
@@ -30,4 +33,10 @@ const Post = ({ title, body, date }) => {
   );
 };
 
-export default Post;
+const mapDispatchToProps = (dispatch) => {
+  return {
+    onDeletePost: (id) => dispatch(deletePost(id))
+  };
+};
+
+export default connect(null , mapDispatchToProps)(Post);
