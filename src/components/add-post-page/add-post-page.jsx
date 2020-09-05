@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/add-post-action';
@@ -21,8 +21,6 @@ const AddPostPage = ({ onAddPost }) => {
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [redirect, setRedirect] = useState(false);
-
-  useEffect(() => console.log("REDIRECT:", redirect), [])
 
   const bodyHandleChange = (e) => {
     setBody(e.target.value);

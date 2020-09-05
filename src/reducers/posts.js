@@ -12,7 +12,7 @@ import {
 import {
   DELETE_POST_REQUEST,
   DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE
+  DELETE_POST_FAILURE,
 } from '../actions/delete-post-action';
 
 const initialState = {
@@ -42,15 +42,12 @@ export const postsReducer = (state = initialState, action) => {
     case DELETE_POST_REQUEST:
       return { ...state, isFething: true };
     case DELETE_POST_SUCCESS:
-      const re = action.payload.config.url.match(/\d+/g);
+      const re = action.payload.config.url.match(/\d+/g); // извлечение id из url
       const id = +re[1];
       const idx = state.posts.findIndex((post) => post.id === id);
       return {
         ...state,
-        posts: [
-          ...state.posts.slice(0, idx), 
-          ...state.posts.slice(idx + 1)
-        ],
+        posts: [...state.posts.slice(0, idx), ...state.posts.slice(idx + 1)],
         isFetching: false,
       };
     case DELETE_POST_FAILURE:

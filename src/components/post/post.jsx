@@ -13,6 +13,8 @@ import {
   Collapse,
   ButtonGroup,
   Button,
+  CircularProgress,
+  Box
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -37,15 +39,32 @@ const useStyles = makeStyles((theme) => ({
   expandOpen: {
     transform: 'rotate(180deg)',
   },
+  progressRow: {
+    display: 'flex',
+    justifyContent: 'center',
+    margin: '1.5em 0',
+    padding: '1em'
+  },
+  progressIndicator: {
+    color: theme.palette.primary.dark,
+  },
 }));
 
-const Post = ({ title, body, date, id, onDeletePost }) => {
+const Post = ({ title, body, date, id, onDeletePost, isFetching, error }) => {
   const styles = useStyles();
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
   };
+
+  if (isFetching) {
+    return (
+      <Box className={styles.progressRow}>
+        <CircularProgress className={styles.progressIndicator} />
+      </Box>
+    );
+  }
 
   return (
     <Card className={styles.root}>
@@ -54,9 +73,9 @@ const Post = ({ title, body, date, id, onDeletePost }) => {
         subheader={`Дата публикации: ${date}`}
         action={
           <IconButton
-          className={clsx(styles.expand, {
-            [styles.expandOpen]: expanded,
-          })}
+            className={clsx(styles.expand, {
+              [styles.expandOpen]: expanded,
+            })}
             onClick={handleExpandClick}
             aria-expanded={expanded}
             aria-label="show more"
@@ -74,7 +93,9 @@ const Post = ({ title, body, date, id, onDeletePost }) => {
             aria-label="outlined primary button group"
             className={styles.actions}
           >
-            <Button color="secondary" onClick={() => onDeletePost(id)}>Удалить</Button>
+            <Button color="secondary" onClick={() => onDeletePost(id)}>
+              Удалить
+            </Button>
           </ButtonGroup>
         </CardContent>
       </Collapse>

@@ -3,13 +3,21 @@ import { connect } from 'react-redux';
 import { getPosts } from '../../actions/get-posts-action';
 import Post from '../post';
 
-const PostsPage = ({ posts, onGetPosts }) => {
+const PostsPage = ({ posts, onGetPosts, isFetching, error }) => {
   useEffect(() => {
     onGetPosts();
   }, []);
 
   return posts.map(({ title, date, id, body }) => (
-    <Post key={id} title={title} date={date} body={body} id={id} />
+    <Post
+      key={id}
+      title={title}
+      date={date}
+      body={body}
+      id={id}
+      isFetching={isFetching}
+      error={error}
+    />
   ));
 };
 
