@@ -1,12 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { connect } from 'react-redux';
 import { addPost } from '../../actions/add-post-action';
-import {
-  TextField,
-  FormControl,
-  Button,
-} from '@material-ui/core';
+import { TextField, FormControl, Button } from '@material-ui/core';
+import { Redirect } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,6 +20,9 @@ const AddPostPage = ({ onAddPost }) => {
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
+  const [redirect, setRedirect] = useState(false);
+
+  useEffect(() => console.log("REDIRECT:", redirect), [])
 
   const bodyHandleChange = (e) => {
     setBody(e.target.value);
@@ -48,29 +48,40 @@ const AddPostPage = ({ onAddPost }) => {
     onAddPost(newPost);
     setBody('');
     setTitle('');
+    setRedirect(true);
   };
-  return (
-    <FormControl className={styles.root}>
-      <TextField
-        className={styles.field}
-        id="standard-basic"
-        label="Тема поста"
-        value={title}
-        onChange={titleHandleChange}
-      />
-      <TextField
-        className={styles.field}
-        id="standard-multiline-flexible"
-        label="Содержимое поста"
-        multiline
-        value={body}
-        onChange={bodyHandleChange}
-      />
-      <Button onClick={add} variant="contained" color="primary" className={styles.field}>
-        Добавить пост
-      </Button>
-    </FormControl>
-  );
+
+  if (redirect) {
+    return <Redirect from="/addPost" to="/" />;
+  } else {
+    return (
+      <FormControl className={styles.root}>
+        <TextField
+          className={styles.field}
+          id="standard-basic"
+          label="Тема поста"
+          value={title}
+          onChange={titleHandleChange}
+        />
+        <TextField
+          className={styles.field}
+          id="standard-multiline-flexible"
+          label="Содержимое поста"
+          multiline
+          value={body}
+          onChange={bodyHandleChange}
+        />
+        <Button
+          onClick={add}
+          variant="contained"
+          color="primary"
+          className={styles.field}
+        >
+          Добавить пост
+        </Button>
+      </FormControl>
+    );
+  }
 };
 const mapDispatchToProps = (dispatch) => {
   return {

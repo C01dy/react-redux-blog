@@ -1,11 +1,11 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
+import { NavLink } from 'react-router-dom';
 
-const useStyles = makeStyles((theme) => ( {
-  
+const useStyles = makeStyles((theme) => ({
   root: {
-    background: theme.palette.primary.main
+    background: theme.palette.primary.main,
   },
   content: {
     display: 'flex',
@@ -34,17 +34,20 @@ const useStyles = makeStyles((theme) => ( {
 }));
 
 const Header = () => {
-
   const styles = useStyles();
   return (
     <Box className={styles.root}>
       <Container className={styles.content}>
-        <Typography variant="h5" className={styles.title}>
-          React blog
-        </Typography>
-        <Typography variant="button" className={styles.add}>
-          Новый пост
-        </Typography>
+        <NavLink to="/">
+          <Typography variant="h5" className={styles.title}>
+            React blog
+          </Typography>
+        </NavLink>
+        <NavLink to="/addPost">
+          <Typography variant="button" className={styles.add}>
+            Новый пост
+          </Typography>
+        </NavLink>
       </Container>
     </Box>
   );

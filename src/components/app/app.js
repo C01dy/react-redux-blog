@@ -1,37 +1,26 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Container } from '@material-ui/core';
-import { getPosts } from '../../actions/get-posts-action';
 import Header from '../header';
-import Post from '../post';
-import { connect } from 'react-redux';
 import AddPostPage from '../add-post-page';
+import PostsPage from '../posts-page';
+import { Route, Switch } from 'react-router-dom';
 
-function App({ onGetPosts, onAddPost, posts, isFetching, error }) {
+function App() {
+  const postsPage = <Route path="/" render={() => <PostsPage />} exact />;
 
-  useEffect(() => {
-    onGetPosts();
-  }, []);
+  const addPostPage = <Route path="/addPost" render={() => <AddPostPage />} />;
 
   return (
     <>
       <Header />
       <Container>
-        {posts.map(({ title, date, id, body }) => (
-          <Post key={id} title={title} date={date} body={body} id={id} />
-        ))}
-        <AddPostPage/>
+        <Switch>
+          {postsPage}
+          {addPostPage}
+        </Switch>
       </Container>
     </>
   );
 }
 
-const mapStateToProps = ({ postsPage: { posts, isFetching, error } }) => {
-  return { posts, isFetching, error };
-};
-
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onGetPosts: () => dispatch(getPosts()),
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default App;
