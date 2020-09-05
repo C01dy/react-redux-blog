@@ -1,5 +1,4 @@
 import axios from 'axios';
-import { getPosts } from './get-posts-action';
 
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
@@ -21,7 +20,6 @@ const addPost = (post) => (dispatch) => {
     .then(({ data }) => dispatch(addPostSuccess(data)))
     .catch(({message}) => dispatch(addPostFailure(message)));
 
-  getPosts();
 };
 
 const addPostRequest = () => {

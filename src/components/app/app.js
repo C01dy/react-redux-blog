@@ -7,7 +7,6 @@ import { Route, Switch } from 'react-router-dom';
 
 function App() {
   const postsPage = <Route path="/" render={() => <PostsPage />} exact />;
-
   const addPostPage = <Route path="/addPost" render={() => <AddPostPage />} />;
 
   return (
