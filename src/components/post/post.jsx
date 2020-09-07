@@ -3,7 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import { deletePost } from '../../actions/delete-post-action';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import {
   Card,
   CardHeader,
@@ -50,9 +50,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Post = ({ title, body, date, id, onDeletePost, isFetching, error }) => {
+const Post = ({ title, body, date, id, isFetching, error }) => {
+  const dispatch = useDispatch();
   const styles = useStyles();
   const [expanded, setExpanded] = useState(false);
+
+  const onDeletePost = (id) => dispatch(deletePost(id))
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -103,10 +106,5 @@ const Post = ({ title, body, date, id, onDeletePost, isFetching, error }) => {
   );
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onDeletePost: (id) => dispatch(deletePost(id)),
-  };
-};
 
-export default connect(null, mapDispatchToProps)(Post);
+export default Post;

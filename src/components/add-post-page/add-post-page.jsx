@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import { connect } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addPost } from '../../actions/add-post-action';
 import { TextField, FormControl, Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
@@ -15,12 +15,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const AddPostPage = ({ onAddPost }) => {
+const AddPostPage = () => {
+  const dispatch = useDispatch();
   const styles = useStyles();
 
   const [title, setTitle] = useState('');
   const [body, setBody] = useState('');
   const [redirect, setRedirect] = useState(false);
+
+  const onAddPost = (post) => dispatch(addPost(post))
 
   const bodyHandleChange = (e) => {
     setBody(e.target.value);
@@ -81,10 +84,5 @@ const AddPostPage = ({ onAddPost }) => {
     );
   }
 };
-const mapDispatchToProps = (dispatch) => {
-  return {
-    onAddPost: (post) => dispatch(addPost(post)),
-  };
-};
 
-export default connect(null, mapDispatchToProps)(AddPostPage);
+export default AddPostPage;
