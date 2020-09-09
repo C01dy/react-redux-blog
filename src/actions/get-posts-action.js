@@ -9,7 +9,7 @@ const getPosts = () => (dispatch) => {
 
   axios({
     method: 'get',
-    url: 'http://localhost:3000/posts',
+    url: 'http://localhost:4000/posts',
   })
     .then(({ data }) => dispatch(fetchPostsSuccess(data)))
     .catch(({message}) => dispatch(fetchPostsFailure(message)));

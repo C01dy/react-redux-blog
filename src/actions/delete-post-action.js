@@ -9,7 +9,7 @@ const deletePost = (id) => (dispatch) => {
 
   axios({
     method: 'delete',
-    url: `http://localhost:3000/posts/${id}`,
+    url: `http://localhost:4000/posts/${id}`,
   })
     .then((post) => {
       dispatch(deletePostSuccess(post))

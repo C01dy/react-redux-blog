@@ -17,7 +17,8 @@ import {
 
 const initialState = {
   posts: [],
-  isFetching: false,
+  fetchingPosts: false,
+  addedPost: false,
   error: null,
 };
 
@@ -30,15 +31,15 @@ export const postsReducer = (state = initialState, action) => {
     case FETCH_POSTS_FAILURE:
       return { ...state, error: action.payload, isFetching: false };
     case ADD_POST_REQUEST:
-      return { ...state, isFetching: true };
+      return { ...state, addedPost: true };
     case ADD_POST_SUCCESS:
       return {
         ...state,
         posts: [...state.posts, action.payload],
-        isFetching: false,
+        addedPost: false,
       };
     case ADD_POST_FAILURE:
-      return { ...state, error: action.payload, isFetching: false };
+      return { ...state, error: action.payload, addedPost: false };
     case DELETE_POST_REQUEST:
       return { ...state, isFething: true };
     case DELETE_POST_SUCCESS:

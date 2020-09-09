@@ -9,7 +9,7 @@ const addPost = (post) => (dispatch) => {
 
   axios({
     method: 'post',
-    url: 'http://localhost:3000/posts',
+    url: 'http://localhost:4000/posts',
     data: {
       title: post.title,
       body: post.body,

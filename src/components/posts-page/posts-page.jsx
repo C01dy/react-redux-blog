@@ -3,19 +3,23 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/get-posts-action';
 import Post from '../post';
 
-const PostsPage = ({  onGetPosts  }) => {
+const PostsPage = ({ onGetPosts }) => {
   const dispatch = useDispatch();
-  const postsPage = useSelector(({ postsPage: { posts, isFetching, error } }) => {
-    return { posts, isFetching, error };
-  })
-  const {posts, error, isFetching} = postsPage;
+  const postsPage = useSelector(
+    ({ postsPage: { posts, isFetching, error } }) => {
+      return { posts, isFetching, error };
+    }
+  );
+  const { posts, error, isFetching } = postsPage;
 
-  onGetPosts = () => dispatch(getPosts())
+
+  onGetPosts = () => {
+    dispatch(getPosts());
+  };
 
   useEffect(() => {
     onGetPosts();
   }, []);
-
 
   return posts.map(({ title, date, id, body }) => (
     <Post
