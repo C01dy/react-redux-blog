@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/get-posts-action';
 import Post from '../post';
 
+
+
 const PostsPage = ({ onGetPosts }) => {
   const dispatch = useDispatch();
   const postsPage = useSelector(

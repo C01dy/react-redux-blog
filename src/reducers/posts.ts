@@ -15,14 +15,14 @@ import {
   DELETE_POST_FAILURE,
 } from '../actions/delete-post-action';
 
-const initialState = {
+const initialState: TasksState = {
   posts: [],
   fetchingPosts: false,
   addedPost: false,
   error: null,
 };
 
-export const postsReducer = (state = initialState, action) => {
+export const postsReducer = (state = initialState, action: object) => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
       return { ...state, isFetching: true };

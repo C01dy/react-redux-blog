@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, ChangeEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { useDispatch } from 'react-redux';
 import { addPost } from '../../actions/add-post-action';
@@ -15,23 +15,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+type post = {
+  title: string;
+  body: string;
+  date: string;
+  id: number;
+};
+
 const AddPostPage = () => {
   const dispatch = useDispatch();
   const styles = useStyles();
 
-  const [title, setTitle] = useState('');
-  const [body, setBody] = useState('');
-  const [redirect, setRedirect] = useState(false);
+  const [title, setTitle] = useState<string>('');
+  const [body, setBody] = useState<string>('');
+  const [redirect, setRedirect] = useState<boolean>(false);
 
-  const onAddPost = (post) => dispatch(addPost(post))
+  const onAddPost = (post: object | null) => dispatch(addPost(post));
 
-  const bodyHandleChange = (e) => {
+  const bodyHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setBody(e.target.value);
   };
-  const titleHandleChange = (e) => {
+  const titleHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value);
   };
-  const formatedDate = () => {
+  const formatedDate = (): string => {
     let date = new Date();
     let dd = date.getDate();
     let mm = date.getMonth();
@@ -39,8 +46,8 @@ const AddPostPage = () => {
     return `${dd < 10 ? '0' + dd : dd}.${mm < 10 ? '0' + mm : mm}.${yy}`;
   };
 
-  const add = () => {
-    const newPost = {
+  const add = (): void => {
+    const newPost: post = {
       title,
       body,
       date: formatedDate(),

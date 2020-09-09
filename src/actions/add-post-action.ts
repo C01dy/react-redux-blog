@@ -1,10 +1,16 @@
+import {
+  IAddPostActionSuccess,
+  IAddPostActionFailure,
+  IAddPostActionRequest,
+  IPost
+} from './../types/index';
 import axios from 'axios';
 
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
-const addPost = (post) => (dispatch) => {
+const addPost = (post: IPost) => (dispatch: any) => {
   dispatch(addPostRequest());
 
   axios({
@@ -18,24 +24,23 @@ const addPost = (post) => (dispatch) => {
     },
   })
     .then(({ data }) => dispatch(addPostSuccess(data)))
-    .catch(({message}) => dispatch(addPostFailure(message)));
-
+    .catch(({ message }) => dispatch(addPostFailure(message)));
 };
 
-const addPostRequest = () => {
+const addPostRequest = ():IAddPostActionRequest => {
   return {
     type: ADD_POST_REQUEST,
   };
 };
 
-const addPostSuccess = (post) => {
+const addPostSuccess = (post: IPost):IAddPostActionSuccess => {
   return {
     type: ADD_POST_SUCCESS,
     payload: post,
   };
 };
 
-const addPostFailure = (err) => {
+const addPostFailure = (err: string | object):IAddPostActionFailure => {
   return {
     type: ADD_POST_FAILURE,
     payload: err,

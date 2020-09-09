@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, MouseEvent } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
@@ -50,14 +50,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const Post = ({ title, body, date, id, isFetching, error }) => {
+type postProps = {
+  title: string,
+  body: string,
+  date: any,
+  id: number,
+  error: string | null,
+  isFetching: any
+}
+
+const Post = ({ title, body, date, id, error, isFetching }: postProps) => {
   const dispatch = useDispatch();
   const styles = useStyles();
-  const [expanded, setExpanded] = useState(false);
+  const [expanded, setExpanded] = useState<boolean>(false);
 
-  const onDeletePost = (id) => dispatch(deletePost(id))
+  const onDeletePost = (id: number):void => {
+    dispatch(deletePost(id))
+  }
 
-  const handleExpandClick = () => {
+  const handleExpandClick = ():void => {
     setExpanded(!expanded);
   };
 

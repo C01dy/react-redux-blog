@@ -1,3 +1,3 @@
-import Post from './post.jsx';
+import Post from './post.tsx';
 
 export default Post;
