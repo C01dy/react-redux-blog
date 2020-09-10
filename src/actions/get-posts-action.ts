@@ -1,10 +1,14 @@
 import axios from 'axios';
+import { IPosts } from '../types';
+import {
+  fetchPostsTypes
+} from './../types/fetch-posts-action-types';
 
-const FETCH_POSTS_SUCCESS = 'GET_POSTS_SUCCESS';
-const FETCH_POSTS_REQUEST = 'GET_POSTS_REQUEST';
-const FETCH_POSTS_FAILURE = 'GET_POSTS_FAILURE';
+const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
+const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
+const FETCH_POSTS_FAILURE = 'FETCH_POSTS_REQUEST';
 
-const getPosts = () => (dispatch) => {
+const getPosts = () => (dispatch: any) => {
   dispatch(fetchPostsRequest());
 
   axios({
@@ -15,20 +19,20 @@ const getPosts = () => (dispatch) => {
     .catch(({message}) => dispatch(fetchPostsFailure(message)));
 };
 
-const fetchPostsRequest = () => {
+const fetchPostsRequest = ():fetchPostsTypes => {
   return {
     type: FETCH_POSTS_REQUEST,
   };
 };
 
-const fetchPostsSuccess = (posts) => {
+const fetchPostsSuccess = (posts: IPosts):fetchPostsTypes => {
   return {
     type: FETCH_POSTS_SUCCESS,
     payload: posts,
   };
 };
 
-const fetchPostsFailure = (err) => {
+const fetchPostsFailure = (err: string | object):fetchPostsTypes => {
   return {
     type: FETCH_POSTS_FAILURE,
     payload: err,

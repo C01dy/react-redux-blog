@@ -14,15 +14,16 @@ import {
   DELETE_POST_SUCCESS,
   DELETE_POST_FAILURE,
 } from '../actions/delete-post-action';
+import { IPosts } from '../types';
 
-const initialState: TasksState = {
+const initialState: IPosts = {
   posts: [],
   fetchingPosts: false,
   addedPost: false,
   error: null,
 };
 
-export const postsReducer = (state = initialState, action: object) => {
+export const postsReducer = (state = initialState, action) => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
       return { ...state, isFetching: true };

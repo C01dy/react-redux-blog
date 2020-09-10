@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { addPost } from '../../actions/add-post-action';
 import { TextField, FormControl, Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
+import { IPost } from '../../types';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -15,22 +16,15 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-type post = {
-  title: string;
-  body: string;
-  date: string;
-  id: number;
-};
 
 const AddPostPage = () => {
   const dispatch = useDispatch();
   const styles = useStyles();
-
   const [title, setTitle] = useState<string>('');
   const [body, setBody] = useState<string>('');
   const [redirect, setRedirect] = useState<boolean>(false);
 
-  const onAddPost = (post: object | null) => dispatch(addPost(post));
+  const onAddPost = (post: IPost) => dispatch(addPost(post));
 
   const bodyHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setBody(e.target.value);
@@ -47,7 +41,7 @@ const AddPostPage = () => {
   };
 
   const add = (): void => {
-    const newPost: post = {
+    const newPost: IPost = {
       title,
       body,
       date: formatedDate(),

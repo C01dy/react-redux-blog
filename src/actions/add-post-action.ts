@@ -1,10 +1,8 @@
 import {
-  IAddPostActionSuccess,
-  IAddPostActionFailure,
-  IAddPostActionRequest,
-  IPost
-} from './../types/index';
+  addPostTypes
+} from './../types/add-post-action-types';
 import axios from 'axios';
+import { IPost } from '../types';
 
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
@@ -27,20 +25,20 @@ const addPost = (post: IPost) => (dispatch: any) => {
     .catch(({ message }) => dispatch(addPostFailure(message)));
 };
 
-const addPostRequest = ():IAddPostActionRequest => {
+const addPostRequest = ():addPostTypes => {
   return {
     type: ADD_POST_REQUEST,
   };
 };
 
-const addPostSuccess = (post: IPost):IAddPostActionSuccess => {
+const addPostSuccess = (post: IPost):addPostTypes => {
   return {
     type: ADD_POST_SUCCESS,
     payload: post,
   };
 };
 
-const addPostFailure = (err: string | object):IAddPostActionFailure => {
+const addPostFailure = (err: string | object):addPostTypes => {
   return {
     type: ADD_POST_FAILURE,
     payload: err,
