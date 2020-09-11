@@ -8,10 +8,10 @@ type posts = {
   postsPage: IPostsInitialState
 }
 
-const PostsPage = () => {
+const PostsPage = (): any => {
   const dispatch = useDispatch();
   const postsPage = useSelector(
-    ({ postsPage: { posts, fetchingPosts, error } }:posts) => {
+    ({ postsPage: { posts, fetchingPosts, error } }: posts) => {
       return { posts, fetchingPosts, error };
     }
   );

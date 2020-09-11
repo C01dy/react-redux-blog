@@ -5,17 +5,14 @@ import AddPostPage from '../add-post-page';
 import PostsPage from '../posts-page';
 import { Route, Switch } from 'react-router-dom';
 
-function App() {
-  const postsPage = <Route path="/" render={():any => <PostsPage />} exact />;
-  const addPostPage = <Route path="/addPost" render={():any => <AddPostPage />} />;
-
+const App = () => {
   return (
     <>
       <Header />
       <Container>
         <Switch>
-          {postsPage}
-          {addPostPage}
+            <Route path="/" component={PostsPage} exact />;
+            <Route path="/addPost" component={AddPostPage} />;
         </Switch>
       </Container>
     </>

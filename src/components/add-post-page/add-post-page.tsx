@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AddPostPage = () => {
+const AddPostPage = ():any => {
   const dispatch = useDispatch();
   const styles = useStyles();
   const [title, setTitle] = useState<string>('');
