@@ -1,46 +1,28 @@
 import axios from 'axios';
+import { IPost } from '../types';
 
-const DELETE_POST_SUCCESS = 'DELETE_POST_SUCCESS';
-const DELETE_POST_REQUEST = 'DELETE_POST_REQUEST';
-const DELETE_POST_FAILURE = 'DELETE_POST_FAILURE';
+const POST_DELETED = 'POST_DELETED';
 
-const deletePost = (id) => (dispatch) => {
-  dispatch(deletePostRequest());
+const deletePost = (id: number) => (dispatch: any) => {
 
   axios({
     method: 'delete',
     url: `http://localhost:4000/posts/${id}`,
   })
     .then((post) => {
-      dispatch(deletePostSuccess(post))
+      dispatch(postDeleted(post))
     })
-    .catch(({ message }) => dispatch(deletePostFailure(message)));
 
 };
 
-const deletePostRequest = () => {
+const postDeleted = (post: any) => {
   return {
-    type: DELETE_POST_REQUEST,
-  };
-};
-
-const deletePostSuccess = (post) => {
-  return {
-    type: DELETE_POST_SUCCESS,
+    type: POST_DELETED,
     payload: post,
-  };
-};
-
-const deletePostFailure = (errMsg) => {
-  return {
-    type: DELETE_POST_FAILURE,
-    payload: errMsg,
   };
 };
 
 export {
   deletePost,
-  DELETE_POST_REQUEST,
-  DELETE_POST_SUCCESS,
-  DELETE_POST_FAILURE,
+  POST_DELETED,
 };

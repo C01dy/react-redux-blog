@@ -42,10 +42,10 @@ const AddPostPage = () => {
 
   const add = (): void => {
     const newPost: IPost = {
-      title,
       body,
       date: formatedDate(),
       id: Math.floor(Math.random() * 54),
+      title,
     };
     onAddPost(newPost);
     setBody('');

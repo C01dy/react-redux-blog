@@ -1,12 +1,11 @@
 import axios from 'axios';
-import { IPosts } from '../types';
 import {
   fetchPostsTypes
 } from './../types/fetch-posts-action-types';
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
-const FETCH_POSTS_FAILURE = 'FETCH_POSTS_REQUEST';
+const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
 const getPosts = () => (dispatch: any) => {
   dispatch(fetchPostsRequest());
@@ -25,14 +24,14 @@ const fetchPostsRequest = ():fetchPostsTypes => {
   };
 };
 
-const fetchPostsSuccess = (posts: IPosts):fetchPostsTypes => {
+const fetchPostsSuccess = (posts: Array<object>):fetchPostsTypes => {
   return {
     type: FETCH_POSTS_SUCCESS,
     payload: posts,
   };
 };
 
-const fetchPostsFailure = (err: string | object):fetchPostsTypes => {
+const fetchPostsFailure = (err: any):fetchPostsTypes => {
   return {
     type: FETCH_POSTS_FAILURE,
     payload: err,

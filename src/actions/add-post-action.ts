@@ -38,7 +38,7 @@ const addPostSuccess = (post: IPost):addPostTypes => {
   };
 };
 
-const addPostFailure = (err: string | object):addPostTypes => {
+const addPostFailure = (err: any):addPostTypes => {
   return {
     type: ADD_POST_FAILURE,
     payload: err,
