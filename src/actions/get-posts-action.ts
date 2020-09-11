@@ -2,15 +2,15 @@ import axios from 'axios';
 import {
   fetchPostsTypes
 } from '../types/fetch-posts-action-types';
-import {IPost, IPostsInitialState} from "../types";
+import {ActionsTypes, IPost, IPostsInitialState} from "../types";
 import {ThunkAction} from "redux-thunk";
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-const getPosts = (): ThunkAction<any, IPostsInitialState, any, any> => {
-  return async (dispatch: any) => {
+const getPosts = (): ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
+  return async (dispatch) => {
     dispatch(fetchPostsRequest());
 
     const res = await axios({

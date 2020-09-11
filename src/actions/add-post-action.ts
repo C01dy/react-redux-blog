@@ -2,14 +2,15 @@ import {
   addPostTypes
 } from '../types/add-post-action-types';
 import axios from 'axios';
-import { IPost } from '../types';
+import {ActionsTypes, IPost, IPostsInitialState} from '../types';
+import {ThunkAction} from "redux-thunk";
 
 const ADD_POST_SUCCESS = 'ADD_POST_SUCCESS';
 const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
-const addPost = (post: IPost) => {
-  return async  (dispatch: any) => {
+const addPost = (post: IPost):ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
+  return async  (dispatch) => {
     dispatch(addPostRequest());
 
     const res = await axios({

@@ -17,7 +17,7 @@ export interface IPost {
     title: string,
 }
 
-export type ActionTypes = addPostTypes | fetchPostsTypes | deleteType
+export type ActionsTypes = addPostTypes | fetchPostsTypes | deleteType
 
 
 // DeletePostAction

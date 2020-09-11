@@ -1,25 +1,25 @@
 import axios from 'axios';
+import {ThunkAction} from "redux-thunk";
+import {ActionsTypes, IPostsInitialState} from "../types";
 
 const POST_DELETED = 'POST_DELETED';
 
-const deletePost = (id: number) => {
-  return (dispatch: any) => {
+const deletePost = (id: number):ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
+  return async (dispatch: any, getState: any) => {
 
-    axios({
+    await axios({
       method: 'delete',
       url: `http://localhost:4000/posts/${id}`,
     })
-        .then((post) => {
-          dispatch(postDeleted(post))
-        })
 
+      dispatch(postDeleted(id))
   }
 };
 
-const postDeleted = (post: any) => {
+const postDeleted = (id: number) => {
   return {
     type: POST_DELETED,
-    payload: post,
+    payload: id,
   };
 };
 

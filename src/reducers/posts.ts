@@ -1,4 +1,4 @@
-import { ActionTypes, IPostsInitialState } from '../types';
+import { ActionsTypes, IPostsInitialState } from '../types';
 import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,
@@ -22,7 +22,7 @@ const initialState: IPostsInitialState = {
   error: null,
 };
 
-export const postsReducer = (state = initialState, action: ActionTypes): any => {
+export const postsReducer = (state = initialState, action: ActionsTypes): any => {
   switch (action.type) {
     case FETCH_POSTS_REQUEST:
       return { ...state, fetchingPosts: true };
@@ -41,8 +41,7 @@ export const postsReducer = (state = initialState, action: ActionTypes): any => 
     case ADD_POST_FAILURE:
       return { ...state, error: action.payload, addedPost: false };
     case POST_DELETED:
-      const re = action.payload.config.url.match(/\d+/g); // извлечение id из url
-      const id = +re[1];
+      const id = action.payload
       const idx = state.posts.findIndex((post) => post.id === id);
       return {
         ...state,
