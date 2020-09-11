@@ -2,18 +2,20 @@ import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { getPosts } from '../../actions/get-posts-action';
 import Post from '../post';
+import {IPost, IPostsInitialState} from "../../types";
 
+type posts = {
+  postsPage: IPostsInitialState
+}
 
-
-const PostsPage = ({ onGetPosts }) => {
+const PostsPage = ({ onGetPosts }: any) => {
   const dispatch = useDispatch();
   const postsPage = useSelector(
-    ({ postsPage: { posts, isFetching, error } }) => {
-      return { posts, isFetching, error };
+    ({ postsPage: { posts, fetchingPosts, error } }:posts) => {
+      return { posts, fetchingPosts, error };
     }
   );
-  const { posts, error, isFetching } = postsPage;
-
+  const { posts, error, fetchingPosts } = postsPage;
 
   onGetPosts = () => {
     dispatch(getPosts());
@@ -23,14 +25,14 @@ const PostsPage = ({ onGetPosts }) => {
     onGetPosts();
   }, []);
 
-  return posts.map(({ title, date, id, body }) => (
+  return posts.map(({ body, date, id, title}: IPost) => (
     <Post
       key={id}
       title={title}
       date={date}
       body={body}
       id={id}
-      isFetching={isFetching}
+      fetchingPosts={fetchingPosts}
       error={error}
     />
   ));

@@ -1,3 +1,3 @@
-import PostsPage from './posts-page.jsx';
+import PostsPage from './posts-page.tsx';
 
 export default PostsPage;

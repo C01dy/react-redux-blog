@@ -3,10 +3,11 @@ import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_FAILURE,
 } from '../actions/get-posts-action';
+import {IPost} from "./index";
 
 export interface IFetchPostsActionSuccess {
   type: typeof FETCH_POSTS_SUCCESS;
-  payload: Array<object>;
+  payload: Array<IPost>;
 }
 
 export interface IFetchPostsActionRequest {

@@ -4,7 +4,7 @@ import { deleteType } from './delete-post-action-types';
 
 
 export interface IPostsInitialState {
-    posts: Array<any>,
+    posts: Array<IPost>,
     fetchingPosts: boolean,
     addedPost?: boolean,
     error: any

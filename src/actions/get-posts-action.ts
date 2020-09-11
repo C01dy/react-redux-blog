@@ -1,21 +1,29 @@
 import axios from 'axios';
 import {
   fetchPostsTypes
-} from './../types/fetch-posts-action-types';
+} from '../types/fetch-posts-action-types';
+import {IPost, IPostsInitialState} from "../types";
+import {ThunkAction} from "redux-thunk";
 
 const FETCH_POSTS_SUCCESS = 'FETCH_POSTS_SUCCESS';
 const FETCH_POSTS_REQUEST = 'FETCH_POSTS_REQUEST';
 const FETCH_POSTS_FAILURE = 'FETCH_POSTS_FAILURE';
 
-const getPosts = () => (dispatch: any) => {
-  dispatch(fetchPostsRequest());
+const getPosts = (): ThunkAction<any, IPostsInitialState, any, any> => {
+  return async (dispatch: any) => {
+    dispatch(fetchPostsRequest());
 
-  axios({
-    method: 'get',
-    url: 'http://localhost:4000/posts',
-  })
-    .then(({ data }) => dispatch(fetchPostsSuccess(data)))
-    .catch(({message}) => dispatch(fetchPostsFailure(message)));
+    const res = await axios({
+      method: 'get',
+      url: 'http://localhost:4000/posts',
+    })
+
+    try {
+      dispatch(fetchPostsSuccess(res.data))
+    } catch (err) {
+      dispatch(fetchPostsFailure(err.message))
+    }
+  }
 };
 
 const fetchPostsRequest = ():fetchPostsTypes => {
@@ -24,7 +32,7 @@ const fetchPostsRequest = ():fetchPostsTypes => {
   };
 };
 
-const fetchPostsSuccess = (posts: Array<object>):fetchPostsTypes => {
+const fetchPostsSuccess = (posts: Array<IPost>):fetchPostsTypes => {
   return {
     type: FETCH_POSTS_SUCCESS,
     payload: posts,

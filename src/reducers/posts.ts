@@ -1,4 +1,4 @@
-import { ActionTypes, IPostsInitialState } from './../types';
+import { ActionTypes, IPostsInitialState } from '../types';
 import {
   FETCH_POSTS_REQUEST,
   FETCH_POSTS_SUCCESS,

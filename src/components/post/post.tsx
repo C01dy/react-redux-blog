@@ -55,11 +55,11 @@ type postProps = {
   body: string,
   date: any,
   id: number,
-  error: string | null,
-  isFetching: any
+  error: any,
+  fetchingPosts: boolean
 }
 
-const Post = ({ title, body, date, id, error, isFetching }: postProps) => {
+const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
   const dispatch = useDispatch();
   const styles = useStyles();
   const [expanded, setExpanded] = useState<boolean>(false);
@@ -72,7 +72,7 @@ const Post = ({ title, body, date, id, error, isFetching }: postProps) => {
     setExpanded(!expanded);
   };
 
-  if (isFetching) {
+  if (fetchingPosts) {
     return (
       <Box className={styles.progressRow}>
         <CircularProgress className={styles.progressIndicator} />
