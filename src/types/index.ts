@@ -13,7 +13,7 @@ export interface IPostsInitialState {
 export interface IPost {
     body: string,
     date: string,
-    id: number
+    id: any
     title: string,
 }
 

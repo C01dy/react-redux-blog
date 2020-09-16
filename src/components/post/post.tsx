@@ -54,7 +54,7 @@ type postProps = {
   title: string,
   body: string,
   date: any,
-  id: number,
+  id: any,
   error: any,
   fetchingPosts: boolean
 }
@@ -64,7 +64,7 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
   const styles = useStyles();
   const [expanded, setExpanded] = useState<boolean>(false);
 
-  const onDeletePost = (id: number):void => {
+  const onDeletePost = (id: any):void => {
     dispatch(deletePost(id))
   }
 
@@ -109,6 +109,9 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
           >
             <Button color="secondary" onClick={() => onDeletePost(id)}>
               Удалить
+            </Button>
+            <Button color="primary">
+              Редактировать
             </Button>
           </ButtonGroup>
         </CardContent>

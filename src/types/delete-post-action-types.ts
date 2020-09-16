@@ -4,7 +4,7 @@ import {
 
 export interface IDeletePostAction {
     type: typeof POST_DELETED,  
-    payload: number
+    payload: any
 }
 
 export type deleteType = IDeletePostAction

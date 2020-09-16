@@ -1,22 +1,22 @@
 {
   "posts": [
     {
-      "title": "Хуки в React",
-      "body": "Хуки — нововведение в React 16.8, которое позволяет использовать состояние и другие возможности React без написания классов.\n\nХуки решают множество, казалось бы, несвязанных между собой, проблем в React, с которыми мы сталкивались в течение пяти лет написания и поддержки десятков тысяч компонентов. Если вы изучаете React, используете его ежедневно или используете другую библиотеку с похожим компонентным подходом, эти проблемы наверняка покажутся вам знакомыми.\n\nС помощью хуков вы можете извлечь логику состояния из компонента, чтобы её протестировать или повторно использовать. Хуки позволяют вам повторно использовать логику состояния, не затрагивая дерево компонентов. Благодаря этому, хуки легко использовать в разных компонентах и делиться ими с сообществом.",
-      "date": "04.08.2020",
-      "id": "54"
-    },
-    {
       "title": "Что такое Lorem Ipsum?",
       "body": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.",
-      "date": "12.08.2020",
-      "id": 27
+      "date": "16.08.2020",
+      "id": "fbac46e"
     },
     {
-      "title": "Lorem1",
-      "body": "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?",
-      "date": "12.08.2020",
-      "id": 51
+      "title": "TypeScript + React",
+      "body": "Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.Lorem Ipsum - это текст-\"рыба\", часто используемый в печати и вэб-дизайне. Lorem Ipsum является стандартной \"рыбой\" для текстов на латинице с начала XVI века. В то время некий безымянный печатник создал большую коллекцию размеров и форм шрифтов, используя Lorem Ipsum для распечатки образцов. Lorem Ipsum не только успешно пережил без заметных изменений пять веков, но и перешагнул в электронный дизайн. Его популяризации в новое время послужили публикация листов Letraset с образцами Lorem Ipsum в 60-х годах и, в более недавнее время, программы электронной вёрстки типа Aldus PageMaker, в шаблонах которых используется Lorem Ipsum.",
+      "date": "16.08.2020",
+      "id": "f42d2a59"
+    },
+    {
+      "title": "WOWOWOOWOW",
+      "body": "WIWIWWII",
+      "date": "17.09.2020",
+      "id": "f4d4ad54"
     }
   ]
 }

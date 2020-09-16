@@ -32,6 +32,7 @@ const AddPostPage = ():any => {
   const titleHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setTitle(e.target.value);
   };
+
   const formatedDate = (): string => {
     let date = new Date();
     let dd = date.getDate();
@@ -39,12 +40,16 @@ const AddPostPage = ():any => {
     let yy = date.getFullYear();
     return `${dd < 10 ? '0' + dd : dd}.${mm < 10 ? '0' + mm : mm}.${yy}`;
   };
+  
+  const genId = (): any => {
+    return `f${(~~(Math.random() * 1e8)).toString(16)}`;
+  }
 
   const add = (): void => {
     const newPost: IPost = {
       body,
       date: formatedDate(),
-      id: Math.floor(Math.random() * 54),
+      id: genId(),
       title,
     };
     onAddPost(newPost);

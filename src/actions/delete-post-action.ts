@@ -4,7 +4,7 @@ import {ActionsTypes, IPostsInitialState} from "../types";
 
 const POST_DELETED = 'POST_DELETED';
 
-const deletePost = (id: number):ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
+const deletePost = (id: any):ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
   return async (dispatch: any, getState: any) => {
 
     await axios({
@@ -16,7 +16,7 @@ const deletePost = (id: number):ThunkAction<Promise<void>, IPostsInitialState, a
   }
 };
 
-const postDeleted = (id: number) => {
+const postDeleted = (id: any) => {
   return {
     type: POST_DELETED,
     payload: id,
