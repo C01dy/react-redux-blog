@@ -3,11 +3,12 @@
 Example of a simple blog on react + redux.
 ### Used
 ***
-* React + (react-router-dom, react-redux)
-* Redux + (redux-thunk)
+* Typescript
+* React
+* Redux
 * Material-UI
-* JSON-server
 * Axios
+* JSON-server
 ### How to start project?
 ***
 1. install packages ```npm install ```
