@@ -3,6 +3,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
 import { deletePost } from '../../actions/delete-post-action';
+import { editPost } from '../../actions/edit-post-action';
 import { useDispatch } from 'react-redux';
 import {
   Card,
@@ -14,14 +15,15 @@ import {
   ButtonGroup,
   Button,
   CircularProgress,
-  Box
+  Box,
+  TextField,
+  FormControl,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     width: '100%',
     margin: '15px 0',
-    border: '1px solid lightgrey',
   },
   media: {
     height: 140,
@@ -43,32 +45,47 @@ const useStyles = makeStyles((theme) => ({
     display: 'flex',
     justifyContent: 'center',
     margin: '1.5em 0',
-    padding: '1em'
+    padding: '1em',
   },
   progressIndicator: {
     color: theme.palette.primary.dark,
   },
+  form: {
+    width: '100%',
+  },
+  formField: {
+    margin: '.8em 0',
+  },
 }));
 
 type postProps = {
-  title: string,
-  body: string,
-  date: any,
-  id: any,
-  error: any,
-  fetchingPosts: boolean
-}
+  title: string;
+  body: string;
+  date: any;
+  id: any;
+  error: any;
+  fetchingPosts: boolean;
+};
 
 const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
   const dispatch = useDispatch();
   const styles = useStyles();
   const [expanded, setExpanded] = useState<boolean>(false);
+  const [editMode, setEditMode] = useState<boolean>(false);
+  const [t, setT] = useState(title);
+  const [b, setB] = useState(body);
 
-  const onDeletePost = (id: any):void => {
-    dispatch(deletePost(id))
+  const onEditPost = () => {
+    dispatch(editPost({title: t, body: b, date, id}))
+    setEditMode(false)
   }
 
-  const handleExpandClick = ():void => {
+
+  const onDeletePost = (id: any): void => {
+    dispatch(deletePost(id));
+  };
+
+  const handleExpandClick = (): void => {
     setExpanded(!expanded);
   };
 
@@ -100,18 +117,44 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
       />
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
-          <Typography variant="body1" color="textSecondary" component="p">
-            {body}
-          </Typography>
+          {editMode ? (
+            <FormControl className={styles.form}>
+              <TextField
+                className={styles.formField}
+                id="standard-basic"
+                label="Тема поста"
+                value={t}
+                onChange={(e) => setT(e.target.value)}
+              />
+              <TextField
+                className={styles.formField}
+                id="standard-multiline-flexible"
+                label="Содержимое поста"
+                multiline
+                value={b}
+                onChange={(e) => setB(e.target.value)}
+              />
+              <Button variant="contained" onClick={onEditPost}>Сохранить изменения</Button>
+            </FormControl>
+          ) : (
+            <Typography variant="body1" color="textSecondary" component="p">
+              {body}
+            </Typography>
+          )}
           <ButtonGroup
-            aria-label="outlined primary button group"
+            aria-label="text primary button group"
             className={styles.actions}
           >
             <Button color="secondary" onClick={() => onDeletePost(id)}>
               Удалить
             </Button>
-            <Button color="primary">
-              Редактировать
+            <Button
+              color="primary"
+              onClick={() => setEditMode((prev) => (prev = !prev))}
+            >
+              <Typography>
+                {editMode ? 'Отмена' : 'Редактировать'}
+              </Typography>
             </Button>
           </ButtonGroup>
         </CardContent>
@@ -119,6 +162,5 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
     </Card>
   );
 };
-
 
 export default Post;

@@ -5,6 +5,7 @@ import { addPost } from '../../actions/add-post-action';
 import { TextField, FormControl, Button } from '@material-ui/core';
 import { Redirect } from 'react-router-dom';
 import { IPost } from '../../types';
+import {formatedDate, genId} from '../../helpers'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,8 +25,6 @@ const AddPostPage = ():any => {
   const [body, setBody] = useState<string>('');
   const [redirect, setRedirect] = useState<boolean>(false);
 
-  const onAddPost = (post: IPost) => dispatch(addPost(post));
-
   const bodyHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
     setBody(e.target.value);
   };
@@ -33,26 +32,14 @@ const AddPostPage = ():any => {
     setTitle(e.target.value);
   };
 
-  const formatedDate = (): string => {
-    let date = new Date();
-    let dd = date.getDate();
-    let mm = date.getMonth();
-    let yy = date.getFullYear();
-    return `${dd < 10 ? '0' + dd : dd}.${mm < 10 ? '0' + mm : mm}.${yy}`;
-  };
-  
-  const genId = (): any => {
-    return `f${(~~(Math.random() * 1e8)).toString(16)}`;
-  }
-
-  const add = (): void => {
+  const onAddPost = (): void => {
     const newPost: IPost = {
       body,
       date: formatedDate(),
       id: genId(),
       title,
     };
-    onAddPost(newPost);
+    dispatch(addPost(newPost))
     setBody('');
     setTitle('');
     setRedirect(true);
@@ -79,7 +66,7 @@ const AddPostPage = ():any => {
           onChange={bodyHandleChange}
         />
         <Button
-          onClick={add}
+          onClick={onAddPost}
           variant="contained"
           color="primary"
           className={styles.field}

@@ -10,7 +10,7 @@ const ADD_POST_REQUEST = 'ADD_POST_REQUEST';
 const ADD_POST_FAILURE = 'ADD_POST_FAILURE';
 
 const addPost = (post: IPost):ThunkAction<Promise<void>, IPostsInitialState, any, ActionsTypes> => {
-  return async  (dispatch) => {
+  return async  (dispatch: any) => {
     dispatch(addPostRequest());
 
     const res = await axios({
