@@ -1,20 +1,22 @@
-### About project
+### О проекте
 ***
-Example of a simple blog on react + redux.
-### Used
-***
+Данный проект предстявляет собой простой блог с реализацией CRUD операций. Изначально был написан на javascript, позже в процессе изучения typescript был переписан на нём, чтобы закрепить изученное.
+Для имитации серверной части был использован моковый JSON-server.
+В качестве api для обработки запросов используется библиотека axios.
+Управлением глобальным состоянием приложения занимается библиотека redux, а для хранения локального используются реакт хуки.
+Что касается стилей, то при написании проекта была изучена и использована библиотека material-ui.
+
+### Стек технологий
 * Typescript
 * React
 * Redux
 * Material-UI
 * Axios
 * JSON-server
-### How to start project?
-***
-1. install packages ```npm install ```
-2. run json-server ```npm run json-server``` (will be start on 4000 port, you may change it at package.json file)
-3. run the command ```npm start ```
-4. Wait for the browser tab to open. 
-If the tab does not open, enter http://localhost:3000/ in the address bar
+
+### Как запустить проект?
+1. Установите npm, выполнив команду ```npm install ```
+2.  Запустите локальный сервер ```npm run json-server``` (Сервер запустится на 4000 порту, но вы можете поменять порт в файле package.json)
+3. Введите команду ```npm start``` для запуска приложения
 
 
