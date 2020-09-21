@@ -9,7 +9,7 @@
 ***
 * Typescript
 * React
-* React-router-dom
+* React router
 * Redux
 * Material-UI
 * Axios
