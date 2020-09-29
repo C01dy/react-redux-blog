@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import ActionForm from '../action-form';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import clsx from 'clsx';
@@ -16,8 +17,6 @@ import {
   Button,
   CircularProgress,
   Box,
-  TextField,
-  FormControl,
 } from '@material-ui/core';
 
 const useStyles = makeStyles((theme) => ({
@@ -72,14 +71,6 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
   const styles = useStyles();
   const [expanded, setExpanded] = useState<boolean>(false);
   const [editMode, setEditMode] = useState<boolean>(false);
-  const [t, setT] = useState(title);
-  const [b, setB] = useState(body);
-
-  const onEditPost = () => {
-    dispatch(editPost({title: t, body: b, date, id}))
-    setEditMode(false)
-  }
-
 
   const onDeletePost = (id: any): void => {
     dispatch(deletePost(id));
@@ -118,24 +109,11 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
       <Collapse in={expanded} timeout="auto" unmountOnExit>
         <CardContent>
           {editMode ? (
-            <FormControl className={styles.form}>
-              <TextField
-                className={styles.formField}
-                id="standard-basic"
-                label="Тема поста"
-                value={t}
-                onChange={(e) => setT(e.target.value)}
-              />
-              <TextField
-                className={styles.formField}
-                id="standard-multiline-flexible"
-                label="Содержимое поста"
-                multiline
-                value={b}
-                onChange={(e) => setB(e.target.value)}
-              />
-              <Button variant="contained" onClick={onEditPost}>Сохранить изменения</Button>
-            </FormControl>
+            <ActionForm
+              actionHandler={editPost}
+              actionBtnText="Сохранить изменения"
+              newPostObject={{ title, body, id }}
+            />
           ) : (
             <Typography variant="body1" color="textSecondary" component="p">
               {body}
@@ -152,9 +130,7 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
               color="primary"
               onClick={() => setEditMode((prev) => (prev = !prev))}
             >
-              <Typography>
-                {editMode ? 'Отмена' : 'Редактировать'}
-              </Typography>
+              <Typography>{editMode ? 'Отмена' : 'Редактировать'}</Typography>
             </Button>
           </ButtonGroup>
         </CardContent>

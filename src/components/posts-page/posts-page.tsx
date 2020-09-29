@@ -32,6 +32,10 @@ const PostsPage = (): any => {
       error={error}
     />
   ));
+
+  // return (
+  //   <ActionForm/>
+  // )
 };
 
 export default PostsPage;
