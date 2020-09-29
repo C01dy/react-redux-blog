@@ -15,22 +15,25 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const ActionForm = ({ actionHandler, actionBtnText, newPostObject }: any) => {
+const ActionForm = ({
+  actionHandler,
+  actionBtnText,
+  newPostObject,
+  next,
+}: any) => {
   const dispatch = useDispatch();
   const styles = useStyles();
   const [title, setTitle] = useState<string>(newPostObject.title);
   const [body, setBody] = useState<string>(newPostObject.body);
 
   const bodyHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    console.log('body changed');
     setBody(e.target.value);
   };
   const titleHandleChange = (e: ChangeEvent<HTMLInputElement>): void => {
-    console.log(newPostObject);
     setTitle(e.target.value);
   };
 
-  const newPost = (): any => {
+  const newPost = (): IPost => {
     if (newPostObject) {
       return {
         ...newPostObject,
@@ -52,7 +55,11 @@ const ActionForm = ({ actionHandler, actionBtnText, newPostObject }: any) => {
     dispatch(actionHandler(newPost()));
     setBody('');
     setTitle('');
+    if (next) {
+      next();
+    }
   };
+
   return (
     <FormControl className={styles.root}>
       <TextField

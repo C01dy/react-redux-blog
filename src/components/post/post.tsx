@@ -113,6 +113,7 @@ const Post = ({ title, body, date, id, error, fetchingPosts }: postProps) => {
               actionHandler={editPost}
               actionBtnText="Сохранить изменения"
               newPostObject={{ title, body, id }}
+              next={() => setEditMode(false)}
             />
           ) : (
             <Typography variant="body1" color="textSecondary" component="p">
