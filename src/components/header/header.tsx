@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Box, Container, Typography } from '@material-ui/core';
-import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -38,16 +37,9 @@ const Header = () => {
   return (
     <Box className={styles.root}>
       <Container className={styles.content}>
-        <NavLink to="/">
-          <Typography variant="h5" className={styles.title}>
-            React blog
-          </Typography>
-        </NavLink>
-        <NavLink to="/addPost">
-          <Typography variant="button" className={styles.add}>
-            Новый пост
-          </Typography>
-        </NavLink>
+        <Typography variant="h5" className={styles.title}>
+          React blog
+        </Typography>
       </Container>
     </Box>
   );

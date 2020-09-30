@@ -5,7 +5,6 @@ import App from './components/app/app';
 import { Provider } from 'react-redux';
 import store from './store';
 import { createMuiTheme, ThemeProvider } from '@material-ui/core/styles';
-import { BrowserRouter } from 'react-router-dom';
 
 const theme = createMuiTheme({
   palette: {
@@ -27,9 +26,7 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
         <App />
-      </BrowserRouter>
     </ThemeProvider>
   </Provider>,
   document.getElementById('root')
